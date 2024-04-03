@@ -40,14 +40,24 @@ button {
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
+  font-weight: 800;
 }
 
 ul {
   display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  list-style: none;
 }
 
 ul li {
-  list-style: none;
+  background-color: #fffdf8;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .button-add {
