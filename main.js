@@ -34,9 +34,11 @@ onValue(shoppingListInDB, function (snapshot) {
       renderShoppingListItem(item);
     }
     removeBtn.style.display = "inline";
+    document.body.style.alignItems = "start";
   } else {
     clearShoppingList();
     removeBtn.style.display = "none";
+    document.body.style.alignItems = "center";
   }
 });
 
