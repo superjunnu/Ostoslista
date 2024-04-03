@@ -33,8 +33,10 @@ onValue(shoppingListInDB, function (snapshot) {
     for (let item of shoppingListArr) {
       renderShoppingListItem(item);
     }
+    removeBtn.style.display = "inline";
   } else {
     clearShoppingList();
+    removeBtn.style.display = "none";
   }
 });
 
