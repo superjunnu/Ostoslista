@@ -26,22 +26,32 @@ const database = getDatabase(app);
 const shoppingListInDB = ref(database, "shoppingList");
 
 onValue(shoppingListInDB, function (snapshot) {
-  let shoppingListArr = Object.entries(snapshot.val());
-  shoppingList.innerHTML = "";
+  if (snapshot.val()) {
+    let shoppingListArr = Object.entries(snapshot.val());
+    shoppingList.innerHTML = "";
 
-  for (let item of shoppingListArr) {
-    let itemID = item[0];
-    let itemValue = item[1];
-    renderShoppingList(itemValue);
+    for (let item of shoppingListArr) {
+      renderShoppingListItem(item);
+    }
+  } else {
+    clearShoppingList();
   }
 });
 
 // Functions
 
-function renderShoppingList(item) {
-  let newLi = document.createElement("li");
-  newLi.textContent = item;
-  shoppingList.appendChild(newLi);
+function renderShoppingListItem(item) {
+  let itemID = item[0];
+  let itemValue = item[1];
+  let newEl = document.createElement("li");
+  newEl.textContent = itemValue;
+  newEl.setAttribute("tabindex", "0");
+  shoppingList.appendChild(newEl);
+
+  newEl.addEventListener("click", () => {
+    let deleteClickedItem = ref(database, `shoppingList/${itemID}`);
+    remove(deleteClickedItem);
+  });
 }
 
 function clearInputField() {

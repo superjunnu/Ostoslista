@@ -11,6 +11,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 
 .container {
@@ -58,6 +59,10 @@ ul li {
   padding: 10px;
   flex-grow: 1;
   text-align: center;
+}
+
+ul li:hover {
+  background-color: #dce1eb;
 }
 
 .button-add {
