@@ -3,6 +3,7 @@ import {
   getDatabase,
   ref,
   push,
+  remove,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 // DOM Elements
@@ -35,9 +36,18 @@ function clearInputField() {
   inputField.value = "";
 }
 
+function clearShoppingList() {
+  remove(shoppingListInDB);
+  shoppingList.innerHTML = "Lista on tyhjä 😫";
+}
+
 addBtn.addEventListener("click", () => {
   let inputValue = inputField.value;
   inputValue === "" ? "" : push(shoppingListInDB, inputValue);
   clearInputField();
   renderShoppingList(inputValue);
+});
+
+removeBtn.addEventListener("click", () => {
+  clearShoppingList();
 });
