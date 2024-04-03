@@ -76,3 +76,11 @@ addBtn.addEventListener("click", () => {
 removeBtn.addEventListener("click", () => {
   clearShoppingList();
 });
+
+inputField.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    let inputValue = inputField.value;
+    inputValue === "" ? "" : push(shoppingListInDB, inputValue);
+    clearInputField();
+  }
+});
