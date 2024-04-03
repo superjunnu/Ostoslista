@@ -5,9 +5,14 @@ import {
   push,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
+// DOM Elements
+
 const inputField = document.querySelector("#input-field");
 const addBtn = document.querySelector("#add-button");
 const removeBtn = document.querySelector("#remove-button");
+const shoppingList = document.querySelector("#shopping-list");
+
+// Firebase setup
 
 const appSettings = {
   databaseURL:
@@ -18,7 +23,21 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const shoppingListInDB = ref(database, "shoppingList");
 
+// Functions
+
+function renderShoppingList(item) {
+  let newLi = document.createElement("li");
+  newLi.textContent = item;
+  shoppingList.appendChild(newLi);
+}
+
+function clearInputField() {
+  inputField.value = "";
+}
+
 addBtn.addEventListener("click", () => {
   let inputValue = inputField.value;
-  push(shoppingListInDB, inputValue);
+  inputValue === "" ? "" : push(shoppingListInDB, inputValue);
+  clearInputField();
+  renderShoppingList(inputValue);
 });

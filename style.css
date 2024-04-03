@@ -42,6 +42,14 @@ button {
   cursor: pointer;
 }
 
+ul {
+  display: flex;
+}
+
+ul li {
+  list-style: none;
+}
+
 .button-add {
   color: #fdfdfd;
   background-color: #7cc8eb;
