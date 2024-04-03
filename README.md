@@ -1,0 +1,1 @@
+Pienen projektin tekemisen harjoittelua
