@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  max-width: 320px;
+  width: 568px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -81,4 +81,14 @@ ul li:hover {
 .button-remove:hover {
   color: #fdfdfd;
   background-color: #645d57;
+}
+
+@media screen and (max-width: 568px) {
+  .container {
+    width: auto;
+  }
+
+  .cart-pic {
+    width: 150px;
+  }
 }
