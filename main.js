@@ -4,6 +4,7 @@ import {
   ref,
   push,
   remove,
+  onValue,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 // DOM Elements
@@ -24,6 +25,17 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const shoppingListInDB = ref(database, "shoppingList");
 
+onValue(shoppingListInDB, function (snapshot) {
+  let shoppingListArr = Object.entries(snapshot.val());
+  shoppingList.innerHTML = "";
+
+  for (let item of shoppingListArr) {
+    let itemID = item[0];
+    let itemValue = item[1];
+    renderShoppingList(itemValue);
+  }
+});
+
 // Functions
 
 function renderShoppingList(item) {
@@ -41,11 +53,12 @@ function clearShoppingList() {
   shoppingList.innerHTML = "Lista on tyhjä 😫";
 }
 
+// Button's Behaviour
+
 addBtn.addEventListener("click", () => {
   let inputValue = inputField.value;
   inputValue === "" ? "" : push(shoppingListInDB, inputValue);
   clearInputField();
-  renderShoppingList(inputValue);
 });
 
 removeBtn.addEventListener("click", () => {
